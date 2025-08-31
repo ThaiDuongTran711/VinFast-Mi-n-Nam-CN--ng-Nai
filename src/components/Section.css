@@ -1,0 +1,33 @@
+.section {
+  max-width: 1200px; 
+  margin: 0 auto;
+  padding-top: 3rem;  
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 4rem; 
+    padding-bottom: 4rem;
+  }
+}
+
+.section-header {
+  margin-bottom: 2rem; 
+}
+
+.section-title {
+  font-size: 1.5rem; 
+  font-weight: 700;   
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 1.875rem; 
+  }
+}
+
+.section-subtitle {
+  margin-top: 0.5rem; 
+  color: #6b7280;     
+}

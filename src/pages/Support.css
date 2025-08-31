@@ -1,0 +1,48 @@
+
+.page-support {
+  padding: 2.5rem 0; 
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem; 
+}
+
+@media (min-width: 768px) {
+  .support-grid {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
+
+.support-card {
+  padding: 1.5rem; 
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem; 
+  transition: box-shadow 0.2s ease;
+}
+.support-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+}
+
+.support-title {
+  font-weight: 600;
+  font-size: 1.125rem; 
+}
+
+.support-desc {
+  margin-top: 0.5rem;
+  color: #4b5563; 
+}
+
+.btn-support {
+  margin-top: 0.75rem;
+  font-weight: 500;
+  color: #00bfa5; 
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.btn-support:hover {
+  text-decoration: underline;
+}

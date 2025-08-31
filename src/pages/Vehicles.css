@@ -1,0 +1,21 @@
+
+.page-vehicles {
+  padding: 2.5rem 0; 
+}
+
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem; 
+}
+
+@media (min-width: 768px) {
+  .vehicles-grid {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
+
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
