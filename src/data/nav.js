@@ -2,30 +2,28 @@ const nav = [
   {
     label: "Sản phẩm",
     children: [
-      { label: "Ô tô điện", to: "/vehicles", desc: "Dải sản phẩm xe điện đa dạng" },
-      { label: "Xe máy điện", to: "/vehicles", desc: "Tối ưu di chuyển nội đô" },
+      { label: "Dòng xe dịch vụ", to: "/vehicles/service", desc: "VinFast Green Series" },
+      { label: "Dòng xe cá nhân", to: "/vehicles/family", desc: "VinFast VF Series" },
     ]
   },
   {
     label: "Trải nghiệm",
     children: [
-      { label: "Lái thử", to: "/support", desc: "Đặt lịch lái thử gần bạn" },
-      { label: "Đăng ký tư vấn", to: "/support", desc: "Nhận tư vấn nhanh chóng" },
+      { label: "Lái thử", action: "laithu", desc: "Đặt lịch lái thử gần bạn" },
+      { label: "Đăng ký tư vấn", action: "tuvan", desc: "Tư vấn nhanh chóng" },
     ]
   },
   {
     label: "Tin tức",
     children: [
       { label: "Bài viết", to: "/news", desc: "Tin mới & sự kiện" },
-      { label: "Blog", to: "/news", desc: "Câu chuyện từ cộng đồng" },
+      { label: "Blog", to: "/blog", desc: "Câu chuyện cộng đồng" },
     ]
   },
   {
     label: "Về VinFast",
-    children: [
-      { label: "Giới thiệu", to: "/about", desc: "Tầm nhìn & sứ mệnh" },
-      { label: "Tuyển dụng", to: "/about", desc: "Gia nhập đội ngũ" },
-    ]
+    to: "/about"   // Link trực tiếp, không dropdown nữa
   },
 ]
+
 export default nav

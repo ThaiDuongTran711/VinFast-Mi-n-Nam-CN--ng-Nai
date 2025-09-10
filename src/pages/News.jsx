@@ -1,20 +1,25 @@
 import React from 'react'
+import newsData from '../data/newsData'
+import './News.css'
 
 export default function News() {
   return (
     <div className="container page-news">
       <h1 className="page-title">Tin tức</h1>
-      <p className="page-subtitle">Trang tin demo. Tích hợp API CMS sau.</p>
+      <p className="page-subtitle"> Cập nhật tin tức mới nhất từ VinFast</p>
 
       <div className="news-list">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="news-card">
-            <div className="news-date">2025-08-27</div>
-            <div className="news-title">Bài viết {i+1} - tiêu đề hấp dẫn</div>
-            <p className="news-desc">
-              Tóm tắt ngắn gọn về nội dung bài viết. Đây là bản mô phỏng để bạn thay thế bằng dữ liệu thật.
-            </p>
-            <button className="btn-readmore">Đọc thêm</button>
+        {newsData.map((item) => (
+          <div key={item.id} className="news-card">
+            {item.img && (
+              <img src={item.img} alt={item.title} className="news-img" />
+            )}
+            <div className="news-body">
+              <div className="news-date">{item.date}</div>
+              <div className="news-title">{item.title}</div>
+              <p className="news-desc">{item.desc}</p>
+              <a href={item.url} target="_blank" rel="noopener noreferrer" className="btn-readmore">Đọc thêm</a>
+            </div>
           </div>
         ))}
       </div>

@@ -1,12 +1,341 @@
-const vehicles = [
-  { id: "miniogreen", name: " MINIO GREEN", range: "170 km (NEDC)", hp: 26.8, price: "Giá từ: 269.000.000 VNĐ", image: "public/images/Minio Green.png" },
-  { id: "vf3", name: " VINFAST VF3", range: "210 km (NEDC)", hp: 43, price: "Giá từ: 299.000.000 VNĐ", image: "public/images/VF3.png" },
-  { id: "heriogreen", name: " HERIO GREEN", range: "326 km (NEDC)", hp: 134, price: "Giá từ: 499.000.000 VNĐ", image: "public/images/Herio.png" },
-  { id: "vf5", name: " VINFAST VF5", range: "326 km (NEDC)", hp: 134, price: "Giá từ: 529.000.000 VNĐ", image: "public/images/VF5.png" },
-  { id: "Neriogreen", name: " NERIO GREEN", range: "318 km (NEDC)", hp: 147, price: "Giá từ: 499.000.000 VNĐ", image: "public/images/Herio.png" },
-  { id: "vf6", name: " VINFAST VF6", range: "480 km (NEDC)", hp: 174, price: "Giá từ: 689.000.000 VNĐ", image: "public/images/VF6.png" },
-  { id: "vf7", name: " VINFAST VF7", range: "496 km", hp: 174, price: "Giá từ: 799.000.000 VNĐ", image: "public/images/VF7.png" },
-  { id: "vf8", name: " VINFAST VF8", range: "471 km", hp: 349, price: "Giá từ: 1.019.000.000 VNĐ", image: "public/images/VF8.webp" },
-  { id: "vf9", name: " VINFAST VF9", range: "626 km", hp: 402, price: "Giá từ: 1.499.000.000 VNĐ", image: "public/images/VF9.webp" },
-]
-export default vehicles
+const serviceVehicles = [
+  {
+    id: "miniogreen",
+    name: "MINIO GREEN",
+    range: "170 km (NEDC)",
+    hp: 26.8,
+    price: "Giá từ: 269.000.000 VNĐ",
+    image: "/images/Minio Green.png",
+    description: "Xe điện mini tiết kiệm, phù hợp di chuyển trong đô thị chật hẹp.",
+    specs: {
+      "Kích thước": "2.900 x 1.495 x 1.640 mm",
+      "Pin": "LFP 16 kWh",
+      "Thời gian sạc": "6-8 giờ",
+      "Tốc độ tối đa": "100 km/h",
+      "Số chỗ ngồi": "4 chỗ",
+    },
+    gallery: ["/images/minio-1.jpg", "/images/minio-2.jpg", "/images/minio-3.jpg"],
+    colors: [
+      { name: "Đỏ", hex: "#c1121f" },
+      { name: "Trắng", hex: "#ffffff" },
+      { name: "Xanh", hex: "#1d3557" },
+    ],
+    features: [
+      "Thiết kế nhỏ gọn dễ xoay trở",
+      "Chi phí vận hành thấp",
+      "Thích hợp cho sinh viên, gia đình nhỏ",
+    ],
+  },
+
+  {
+    id: "heriogreen",
+    name: "HERIO GREEN",
+    range: "326 km (NEDC)",
+    hp: 134,
+    price: "Giá từ: 499.000.000 VNĐ",
+    image: "/images/Herio.png",
+    description: "Mẫu xe điện hạng B, linh hoạt cho gia đình nhỏ hoặc chạy dịch vụ.",
+    specs: {
+      "Kích thước": "4.170 x 1.765 x 1.580 mm",
+      "Pin": "LFP 37,23 kWh",
+      "Thời gian sạc": "30 phút đạt 70%",
+      "Tốc độ tối đa": "150 km/h",
+      "Số chỗ ngồi": "5 chỗ",
+    },
+    gallery: ["/images/herio-1.jpg", "/images/herio-2.jpg", "/images/herio-3.jpg"],
+    colors: [
+      { name: "Trắng", hex: "#ffffff" },
+      { name: "Đen", hex: "#000000" },
+      { name: "Xanh dương", hex: "#1e6091" },
+    ],
+    features: [
+      "Không gian thoải mái cho gia đình",
+      "Trang bị an toàn cơ bản đầy đủ",
+      "Thời gian sạc nhanh tiện lợi",
+    ],
+  },
+
+  {
+    id: "Neriogreen",
+    name: "NERIO GREEN",
+    range: "318 km (NEDC)",
+    hp: 147,
+    price: "Giá từ: 668.000.000 VNĐ",
+    image: "/images/Nerio Green.png",
+    description: "Xe điện tầm trung, cân bằng giữa hiệu suất và sự tiện nghi.",
+    specs: {
+      "Kích thước": "4.450 x 1.870 x 1.635 mm",
+      "Pin": "LFP 49,9 kWh",
+      "Thời gian sạc": "40 phút đạt 70%",
+      "Tốc độ tối đa": "160 km/h",
+      "Số chỗ ngồi": "5 chỗ",
+    },
+    gallery: ["/images/nerio-1.jpg", "/images/nerio-2.jpg"],
+    colors: [
+      { name: "Xanh lá", hex: "#2a9d8f" },
+      { name: "Đen", hex: "#000000" },
+      { name: "Trắng ngọc trai", hex: "#f8f9fa" },
+    ],
+    features: [
+      "Thiết kế hiện đại, sang trọng",
+      "Trang bị nhiều công nghệ thông minh",
+      "Khả năng vận hành ổn định trên đường dài",
+    ],
+  },
+
+  {
+    id: "Limogreen",
+    name: "LIMO GREEN",
+    range: "450 km (NEDC)",
+    hp: 201,
+    price: "Giá từ: 749.000.000 VNĐ",
+    image: "/images/LimoGreen-2048x1208.jpg",
+    description: "Xe điện dịch vụ cao cấp, không gian rộng rãi, tiện nghi vượt trội.",
+    specs: {
+      "Kích thước": "4.750 x 1.920 x 1.660 mm",
+      "Pin": "LFP 60 kWh",
+      "Thời gian sạc": "45 phút đạt 70%",
+      "Tốc độ tối đa": "170 km/h",
+      "Số chỗ ngồi": "7 chỗ",
+    },
+    gallery: ["/images/limo-1.jpg", "/images/limo-2.jpg"],
+    colors: [
+      { name: "Bạc", hex: "#adb5bd" },
+      { name: "Đen", hex: "#000000" },
+      { name: "Trắng", hex: "#ffffff" },
+    ],
+    features: [
+      "Không gian nội thất sang trọng",
+      "Ghế ngồi rộng rãi cho 7 hành khách",
+      "Thích hợp cho dịch vụ vận tải cao cấp",
+    ],
+  },
+
+  {
+    id: "ecvan",
+    name: "EC VAN",
+    range: "150 km",
+    hp: 40,
+    price: "Giá từ: 285.000.000 VNĐ",
+    image: "/images/ECVAN.jpg",
+    description: "Xe tải van điện cỡ nhỏ, lý tưởng cho vận chuyển nội đô.",
+    specs: {
+      "Kích thước": "3.850 x 1.540 x 1.920 mm",
+      "Pin": "LFP 20,7 kWh",
+      "Thời gian sạc": "8 giờ",
+      "Tải trọng": "750 kg",
+      "Số chỗ ngồi": "2 chỗ",
+    },
+    gallery: ["/images/ecvan-1.jpg", "/images/ecvan-2.jpg"],
+    colors: [
+      { name: "Trắng", hex: "#ffffff" },
+      { name: "Bạc", hex: "#adb5bd" },
+    ],
+    features: [
+      "Chi phí vận hành thấp",
+      "Phù hợp giao hàng nội đô",
+      "Kích thước nhỏ dễ dàng di chuyển",
+    ],
+  },
+];
+
+const familyVehicles = [
+  {
+    id: "vfwild",
+    name: "VINFAST VF WILD",
+    range: "500 km",
+    hp: 420,
+    price: "Giá từ: Chưa công bố",
+    image: "/images/VF Wild.png",
+    description: "Mẫu bán tải điện đầu tiên của VinFast, mạnh mẽ và hiện đại.",
+    specs: {
+      "Kích thước": "5.300 x 2.000 x 1.800 mm",
+      "Pin": "Pin 100 kWh",
+      "Thời gian sạc": "45 phút đạt 70%",
+      "Tốc độ tối đa": "200 km/h",
+      "Sức kéo": "3.500 kg",
+    },
+    gallery: ["/images/vfwild-1.jpg", "/images/vfwild-2.jpg"],
+    colors: [
+      { name: "Xanh rêu", hex: "#606c38" },
+      { name: "Đen", hex: "#000000" },
+      { name: "Trắng", hex: "#ffffff" },
+    ],
+    features: [
+      "Khả năng off-road mạnh mẽ",
+      "Sức kéo ấn tượng 3.5 tấn",
+      "Thiết kế khỏe khoắn, nam tính",
+    ],
+  },
+
+  {
+    id: "vf3",
+    name: "VINFAST VF3",
+    range: "210 km",
+    hp: 43,
+    price: "Giá từ: 299.000.000 VNĐ",
+    image: "/images/VF3.png",
+    description: "Mẫu SUV mini đô thị, nhỏ gọn, tiết kiệm và thân thiện môi trường.",
+    specs: {
+      "Kích thước": "3.190 x 1.679 x 1.622 mm",
+      "Pin": "LFP 18,64 kWh",
+      "Thời gian sạc": "30 phút đạt 70%",
+      "Tốc độ tối đa": "90 km/h",
+      "Số chỗ ngồi": "5 chỗ",
+    },
+    gallery: ["/images/VF3 (1).png", "/images/VF3 (2).png", "/images/VF3 (4).png"],
+    colors: [
+      { name: "Đỏ", hex: "#c1121f" },
+      { name: "Trắng", hex: "#ffffff" },
+      { name: "Xanh biển", hex: "#0077b6" },
+    ],
+    features: [
+      "Thiết kế nhỏ gọn cho đô thị",
+      "Chi phí sử dụng cực thấp",
+      "Thân thiện môi trường",
+      "/images/VF3-cacmau.jpg"
+    ],
+  },
+
+  {
+    id: "vf5",
+    name: "VINFAST VF5",
+    range: "326 km (NEDC)",
+    hp: 134,
+    price: "Giá từ: 529.000.000 VNĐ",
+    image: "/images/VF5.png",
+    description: "SUV cỡ nhỏ, hiện đại, phù hợp cho gia đình trẻ.",
+    specs: {
+      "Kích thước": "3.967 x 1.723 x 1.578 mm",
+      "Pin": "LFP 37,23 kWh",
+      "Thời gian sạc": "30 phút đạt 70%",
+      "Tốc độ tối đa": "150 km/h",
+      "Số chỗ ngồi": "5 chỗ",
+    },
+    gallery: ["/images/vf5-1.jpg", "/images/vf5-2.jpg"],
+    colors: [
+      { name: "Trắng", hex: "#ffffff" },
+      { name: "Đen", hex: "#000000" },
+      { name: "Xanh dương", hex: "#1d3557" },
+    ],
+    features: [
+      "Phong cách hiện đại, trẻ trung",
+      "Trang bị công nghệ an toàn cơ bản",
+      "Phù hợp gia đình nhỏ",
+    ],
+  },
+
+  {
+    id: "vf6",
+    name: "VINFAST VF6",
+    range: "480 km (NEDC)",
+    hp: 174,
+    price: "Giá từ: 689.000.000 VNĐ",
+    image: "/images/VF6.png",
+    description: "SUV hạng B điện, phong cách trẻ trung, công nghệ hiện đại.",
+    specs: {
+      "Kích thước": "4.238 x 1.820 x 1.594 mm",
+      "Pin": "LFP 59,6 kWh",
+      "Thời gian sạc": "35 phút đạt 70%",
+      "Tốc độ tối đa": "160 km/h",
+      "Số chỗ ngồi": "5 chỗ",
+    },
+    gallery: ["/images/vf6-1.jpg", "/images/vf6-2.jpg"],
+    colors: [
+      { name: "Đỏ", hex: "#e63946" },
+      { name: "Trắng", hex: "#ffffff" },
+      { name: "Xanh lam", hex: "#4361ee" },
+    ],
+    features: [
+      "Thiết kế trẻ trung, năng động",
+      "Khoang cabin hiện đại, tiện ích",
+      "Phù hợp cả gia đình và giới trẻ",
+    ],
+  },
+
+  {
+    id: "vf7",
+    name: "VINFAST VF7",
+    range: "496 km",
+    hp: 174,
+    price: "Giá từ: 799.000.000 VNĐ",
+    image: "/images/VF7.png",
+    description: "SUV hạng C với thiết kế mạnh mẽ, nội thất rộng rãi.",
+    specs: {
+      "Kích thước": "4.545 x 1.890 x 1.635 mm",
+      "Pin": "LFP 75,3 kWh",
+      "Thời gian sạc": "40 phút đạt 70%",
+      "Tốc độ tối đa": "180 km/h",
+      "Số chỗ ngồi": "5 chỗ",
+    },
+    gallery: ["/images/vf7-1.jpg", "/images/vf7-2.jpg"],
+    colors: [
+      { name: "Đen", hex: "#000000" },
+      { name: "Trắng", hex: "#ffffff" },
+      { name: "Bạc", hex: "#adb5bd" },
+    ],
+    features: [
+      "Thiết kế SUV hạng C cá tính",
+      "Khoang cabin rộng rãi",
+      "Công nghệ an toàn tiên tiến",
+    ],
+  },
+
+  {
+    id: "vf8",
+    name: "VINFAST VF8",
+    range: "471 km",
+    hp: 349,
+    price: "Giá từ: 1.019.000.000 VNĐ",
+    image: "/images/VF8.webp",
+    description: "SUV hạng D, công nghệ cao, an toàn vượt trội.",
+    specs: {
+      "Kích thước": "4.750 x 1.934 x 1.667 mm",
+      "Pin": "Pin 82 kWh",
+      "Thời gian sạc": "35 phút đạt 70%",
+      "Tốc độ tối đa": "200 km/h",
+      "Số chỗ ngồi": "5 chỗ",
+    },
+    gallery: ["/images/vf8-1.jpg", "/images/vf8-2.jpg"],
+    colors: [
+      { name: "Đỏ", hex: "#d00000" },
+      { name: "Trắng", hex: "#ffffff" },
+      { name: "Đen", hex: "#000000" },
+    ],
+    features: [
+      "SUV hạng D sang trọng",
+      "Trang bị công nghệ cao",
+      "Khả năng vận hành mạnh mẽ",
+    ],
+  },
+
+  {
+    id: "vf9",
+    name: "VINFAST VF9",
+    range: "626 km",
+    hp: 402,
+    price: "Giá từ: 1.499.000.000 VNĐ",
+    image: "/images/VF9.webp",
+    description: "SUV full-size cao cấp, không gian rộng rãi, 7 chỗ ngồi tiện nghi.",
+    specs: {
+      "Kích thước": "5.120 x 2.000 x 1.721 mm",
+      "Pin": "Pin 123 kWh",
+      "Thời gian sạc": "40 phút đạt 70%",
+      "Tốc độ tối đa": "200 km/h",
+      "Số chỗ ngồi": "7 chỗ",
+    },
+    gallery: ["/images/vf9-1.jpg", "/images/vf9-2.jpg"],
+    colors: [
+      { name: "Trắng", hex: "#ffffff" },
+      { name: "Đen", hex: "#000000" },
+      { name: "Xanh navy", hex: "#003049" },
+    ],
+    features: [
+      "SUV full-size cao cấp 7 chỗ",
+      "Không gian nội thất sang trọng",
+      "Trang bị tiện nghi hàng đầu",
+    ],
+  },
+];
+
+export { serviceVehicles, familyVehicles };

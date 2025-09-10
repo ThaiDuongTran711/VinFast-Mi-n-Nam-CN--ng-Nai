@@ -1,37 +1,138 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import './HeroCarousel.css'
 
+const slides = [
+  { video: "/images/The company behind VinFast electric cars.mp4" },
+  { id: 1, title: "Hào Khí Non Sông", desc: "Ưu đãi nhân dịp 80 năm Quốc Khánh nước CHXHCN Việt Nam", cta: "Khám phá xe", to: "/vehicles", img: "/images/80nam.png" },
+  { id: 2, title: "Mãnh Liệt Tinh Thần Việt Nam", desc: "Ưu đãi vàng 4% khi mua xe điện VinFast", cta: "Tìm hiểu hỗ trợ", to: "/support", img: "/images/tinhthan.jpg" },
+  { id: 3, title: "Tin nóng mỗi ngày", desc: "Cập nhật sản phẩm và ưu đãi", cta: "Xem tin tức", to: "/news", img: "/images/green.jpg" }
+]
+
 export default function HeroCarousel() {
-  const slides = [
-    { id: 1, title: "Trải nghiệm tương lai di chuyển", desc: "Ô tô điện thông minh cho mọi gia đình", cta: "Khám phá xe", to: "/vehicles", img: "/images/hero1.jpg" },
-    { id: 2, title: "An tâm trên mọi hành trình", desc: "Dịch vụ và bảo hành toàn diện", cta: "Tìm hiểu hỗ trợ", to: "/support", img: "/images/hero2.jpg" },
-    { id: 3, title: "Tin nóng mỗi ngày", desc: "Cập nhật sản phẩm và ưu đãi", cta: "Xem tin tức", to: "/news", img: "/images/hero3.jpg" }
-  ]
+  const [current, setCurrent] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const len = slides.length
+  const autoRef = useRef(null)
+  const videoTimeoutRef = useRef(null)
+
+  useEffect(() => {
+    if (len <= 1) return
+    if (isPaused) return
+
+    // Nếu là video thì không setInterval, để video tự điều khiển
+    if (slides[current].video) return
+
+    autoRef.current = setInterval(() => {
+      setCurrent(c => (c + 1) % len)
+    }, 5000)
+
+    return () => clearInterval(autoRef.current)
+  }, [isPaused, len, current])
+
+  const prev = () => setCurrent(c => (c - 1 + len) % len)
+  const next = () => setCurrent(c => (c + 1) % len)
+  const goTo = (i) => setCurrent(i)
+
+  if (len === 0) return null
+
   return (
-    <div className="hero">
-      <div className="carousel">
+    <div
+      className="hero"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="carousel" role="region" aria-roledescription="carousel" aria-label="Hero carousel">
         {slides.map((s, i) => (
-          <div key={s.id} className="slide">
-            <img src={s.img} alt="" className="slide-img" />
-            <div className="slide-overlay"></div>
+          <div
+            key={s.id || i}
+            className={`slide ${i === current ? 'active' : ''}`}
+            aria-hidden={i === current ? "false" : "true"}
+          >
+            {s.video ? (
+              <video
+                ref={el => {
+                  if (el) {
+                    if (i === current) {
+                      el.currentTime = 0
+                      el.play().catch(() => {})
+
+                      // Clear timeout cũ nếu có
+                      if (videoTimeoutRef.current) {
+                        clearTimeout(videoTimeoutRef.current)
+                      }
+
+                      // Sau 10s thì next slide
+                      videoTimeoutRef.current = setTimeout(() => {
+                        next()
+                      }, 10000)
+                    } else {
+                      el.pause()
+                    }
+                  }
+                }}
+                src={s.video}
+                muted
+                playsInline
+                className="slide-video"
+              />
+            ) : (
+              <img
+                src={s.img}
+                alt={s.title}
+                className="slide-img"
+                onError={(e) => { e.currentTarget.src = '/images/fallback.jpg' }} 
+              />
+            )}
+            <div className="slide-overlay" />
             <div className="slide-content">
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: i * 0.05 }}
+                animate={i === current ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                transition={{ duration: 0.6 }}
                 className="slide-text"
               >
                 <h2 className="slide-title">{s.title}</h2>
                 <p className="slide-desc">{s.desc}</p>
-                <Link to={s.to} className="slide-btn">
-                  {s.cta}
-                </Link>
+                {s.cta && <Link to={s.to} className="slide-btn">{s.cta}</Link>}
               </motion.div>
             </div>
           </div>
         ))}
+
+        {/* Arrow buttons */}
+        <button
+          className="carousel-arrow left"
+          onClick={() => { prev(); setIsPaused(true) }}
+          aria-label="Previous slide"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
+        <button
+          className="carousel-arrow right"
+          onClick={() => { next(); setIsPaused(true) }}
+          aria-label="Next slide"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
+        {/* Dots */}
+        <div className="carousel-controls" aria-hidden="false">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { goTo(i); setIsPaused(true) }}
+              className={`dot ${i === current ? 'active' : ''}`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
