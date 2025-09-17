@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Chatbot.css";
+import { serviceVehicles, familyVehicles } from "../data/vehicles"; // chỉnh path cho đúng
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([
@@ -19,6 +20,17 @@ export default function Chatbot() {
     setInput("");
     setLoading(true);
 
+    // Gộp dữ liệu từ serviceVehicles + familyVehicles
+    const allCars = [...serviceVehicles, ...familyVehicles];
+
+    // Chuyển thành text ngắn gọn cho bot
+    const carInfo = allCars
+      .map(
+        car =>
+          `${car.name} - ${car.price} - Tầm hoạt động: ${car.range} - ${car.description}`
+      )
+      .join("\n");
+
     try {
       const response = await fetch(
         "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" + apiKey,
@@ -26,7 +38,25 @@ export default function Chatbot() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: input }] }]
+            contents: [
+              {
+                parts: [
+                  {
+                    text: `
+Bạn là chatbot tư vấn xe VinFast. 
+Chỉ sử dụng dữ liệu dưới đây để tư vấn cho khách hàng, không được bịa thêm.
+
+Danh sách xe VinFast:
+${carInfo}
+
+Nếu khách hỏi về hãng xe khác, hãy trả lời: "Xin lỗi, mình chỉ tư vấn về xe VinFast."
+
+Khách: ${input}
+                    `
+                  }
+                ]
+              }
+            ]
           }),
         }
       );
