@@ -12,7 +12,7 @@
 
 /* Hình ảnh chính hoặc slider */
 .detail-image {
-  max-width: 500px;
+  max-width: 1100px;
   width: 100%;
 }
 
@@ -70,20 +70,37 @@
   font-size: 0.95rem;
 }
 
-/* Màu sắc nếu có */
-.detail-colors {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+/* Đặc điểm nổi bật */
+.detail-features {
+  margin: 20px 0;
 }
 
-.color-swatch {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  margin-left: 8px;
-  border: 1px solid #ccc;
-  cursor: pointer;
+.detail-features h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.detail-features ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.detail-features li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.detail-features li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0071e3;
+  font-weight: bold;
 }
 
 /* Nút lái thử */
@@ -118,7 +135,7 @@
   background: white;
   padding: 30px;
   border-radius: 8px;
-  width: 320px;
+  width: 430px;
   position: relative;
 }
 
@@ -162,6 +179,7 @@
 .close-btn:hover {
   background: #bbb;
 }
+
 /* Nút mũi tên slider */
 .custom-arrow {
   position: absolute;
@@ -169,8 +187,7 @@
   transform: translateY(-50%);
   z-index: 2;
   font-size: 2rem;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: black;
   padding: 8px 12px;
   border-radius: 50%;
   cursor: pointer;
@@ -179,14 +196,14 @@
 }
 
 .custom-arrow:hover {
-  background: rgba(0, 0, 0, 0.8);
+  color: #c00;
 }
 
 .custom-arrow-prev {
-  left: 10px;
+  left: 2px;
   transform: translateY(-50%) rotate(180deg);
 }
 
 .custom-arrow-next {
-  right: 10px;
+  right: 2px;
 }

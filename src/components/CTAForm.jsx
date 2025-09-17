@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 import "./CTAForm.css";
 
 export default function CTAForm({ formType }) {
@@ -9,6 +10,8 @@ export default function CTAForm({ formType }) {
     car: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -18,12 +21,29 @@ export default function CTAForm({ formType }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Thông tin khách hàng:", formData);
-    alert("Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm nhất.");
-    setFormData({ name: "", phone: "", email: "", car: "" });
+    setLoading(true);
+
+    emailjs
+      .send(
+        "service_mels8o9", 
+        "template_h618023",   
+        formData,
+        "r6doaSgOiMHGujOoB"
+      )
+      .then(
+        () => {
+          alert("Cảm ơn bạn! Thông tin đã được gửi.");
+          setFormData({ name: "", phone: "", email: "", car: "" });
+        },
+        (error) => {
+          console.error("Email error:", error);
+          alert("Có lỗi xảy ra khi gửi thông tin, vui lòng thử lại.");
+        }
+      )
+      .finally(() => setLoading(false));
   };
 
-  // Đổi tiêu đề theo formType
+  // Đổi tiêu đề & mô tả theo formType
   const title =
     formType === "laithu"
       ? "Đăng ký lái thử"
@@ -87,7 +107,9 @@ export default function CTAForm({ formType }) {
           <option value="VF8">VinFast VF 8</option>
           <option value="VF9">VinFast VF 9</option>
         </select>
-        <button type="submit">Gửi thông tin</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Đang gửi..." : "Gửi thông tin"}
+        </button>
       </form>
     </section>
   );

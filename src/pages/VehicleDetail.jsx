@@ -69,7 +69,9 @@ export default function VehicleDetail() {
               <tbody>
                 {Object.entries(car.specs).map(([key, value]) => (
                   <tr key={key}>
-                    <td><strong>{key}</strong></td>
+                    <td>
+                      <strong>{key}</strong>
+                    </td>
                     <td>{value}</td>
                   </tr>
                 ))}
@@ -77,18 +79,15 @@ export default function VehicleDetail() {
             </table>
           )}
 
-          {/* Màu sắc */}
-          {car.colors && car.colors.length > 0 && (
-            <div className="detail-colors">
-              Màu sắc:
-              {car.colors.map((color) => (
-                <span
-                  key={color.name}
-                  className="color-swatch"
-                  title={color.name}
-                  style={{ backgroundColor: color.hex }}
-                />
-              ))}
+          {/* Đặc điểm nổi bật */}
+          {car.features && car.features.length > 0 && (
+            <div className="detail-features">
+              <h3>Đặc điểm nổi bật</h3>
+              <ul>
+                {car.features.map((f, i) => (
+                  <li key={i}>{f}</li>
+                ))}
+              </ul>
             </div>
           )}
 

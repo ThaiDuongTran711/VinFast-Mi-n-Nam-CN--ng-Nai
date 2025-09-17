@@ -100,14 +100,15 @@ export default function Header() {
               openForm={openForm}   
             />
           ))}
-        </nav>
+        </nav> 
 
-        <div className="btn-zalo">
-          <a href='#intro' className="zalo">Liên hệ ngay</a>
-          <button className='zalo' onClick={() => openForm("laithu")}>
-            Đăng kí lái thử
-          </button>
-        </div>
+       <div className="btn-zalo">
+  <a href="#intro" className="zalo btn-contact">Liên hệ ngay</a>
+  <button className="zalo btn-testdrive" onClick={() => openForm("laithu")}>
+    Đăng kí lái thử
+  </button>
+</div>
+
 
         <div className="mobile-menu-btn">
           <button aria-label="Menu" onClick={() => setOpen(o => !o)}>
@@ -125,3 +126,4 @@ export default function Header() {
     </header>
   )
 }
+ 
