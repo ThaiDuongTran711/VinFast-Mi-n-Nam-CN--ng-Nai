@@ -13,7 +13,7 @@ export default function Home() {
     <div>
       <HeroCarousel/>
       {/* Dải sản phẩm */}
-      <Section title="DẢI SẢN PHẨM XE KINH DOANH DỊCH VỤ" subtitle="Giải pháp xanh cho dịch vụ thông minh, tiết kiệm chi phí – tối đa lợi nhuận">
+      <Section title="VINFAST XE KINH DOANH DỊCH VỤ" subtitle="Giải pháp xanh cho dịch vụ thông minh, tiết kiệm chi phí – tối đa lợi nhuận">
         <div className="home-grid">
           {serviceVehicles.slice(0, 15).map(v => (
             <ProductCard key={v.id} car={v} />
@@ -21,7 +21,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section title="DẢI SẢN PHẨM XE CÁ NHÂN - GIA ĐÌNH" subtitle="Không gian tiện nghi, an toàn vượt trội – đồng hành cùng gia đình Việt">
+      <Section title="VINFAST XE CÁ NHÂN - GIA ĐÌNH" subtitle="Không gian tiện nghi, an toàn vượt trội – đồng hành cùng gia đình Việt">
         <div className="home-grid">
           {familyVehicles.slice(0, 15).map(v => (
             <ProductCard key={v.id} car={v} />

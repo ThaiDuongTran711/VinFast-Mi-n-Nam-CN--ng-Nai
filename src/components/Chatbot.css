@@ -86,6 +86,7 @@
 .avatar {
   font-size: 18px;
   margin-right: 4px;
+  width: 1rem;
 }
 
 .chat-input {

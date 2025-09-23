@@ -65,13 +65,13 @@
 /* Responsive cho tablet/mobile */
 @media (max-width: 768px) {
   .btn-zalo {
-    flex-direction: column;
-    width: 100%;
+    flex-direction: flex;
+    width: 50%;
     gap: 10px;
   }
 
   .zalo {
-    width: 100%;
+    width: 50%;
     padding: 12px 20px;
     font-size: 1rem;
     text-align: center;
