@@ -6,7 +6,7 @@ export default function Intro() {
     <section id="intro">
       <div className="intro-container">
         <div className="intro-image">
-          <img src="/images/avatar.jpg" alt="Tư vấn viên" />
+          <img src="/images/avatar.png" alt="Tư vấn viên" />
         </div>
         <div className="intro-content">
           <h2>VINFAST MIỀN NAM CN ĐỒNG NAI</h2>
