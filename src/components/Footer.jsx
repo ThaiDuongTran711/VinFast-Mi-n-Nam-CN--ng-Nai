@@ -8,9 +8,9 @@ export default function Footer() {
       <div className="footer-container">
         <div>
           <div className="footer-logo">VinFast</div>
-          <p className="footer-sub"> VinFast Miền Nam - Đồng Nai </p>
+          <p className="footer-sub"> VinFast Thủ Thiêm - Linh Xuân </p>
           <div className="footer-text">☏ Hotline: 03333.760.51 (Lộc.VinFast) </div>
-          <div className="footer-text">Địa chỉ: Số 487 Quốc lộ 51, Phường Long Hưng, Tỉnh Đồng Nai </div>
+          <div className="footer-text">Địa chỉ: Số 239 Quốc lộ 1K, Phường Linh Xuân, TP. Hồ Chí Minh </div>
           <div className="footer-MXH">
             <img className="footer-zalo" src="/images/zalo.jpg"/>
             <img className="footer-zalo" src="/images/FB.png"/>
