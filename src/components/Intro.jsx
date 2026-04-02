@@ -9,7 +9,7 @@ export default function Intro() {
           <img src="/images/avatar.png" alt="Tư vấn viên" />
         </div>
         <div className="intro-content">
-          <h2>VINFAST MIỀN NAM CN ĐỒNG NAI</h2>
+          <h2>VINFAST THỦ THIÊM - LINH XUÂN</h2>
           <p className="intro-name">Trần Bùi Phước Lộc</p>
           <p className="intro-role">Chuyên Viên Tư Vấn Bán Hàng</p>
           <p className="intro-hotline">Hotline: 03333 760 51</p>
